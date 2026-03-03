@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 const codeLines = [
-  { indent: 0, content: [{ t: 'kw', v: 'const' }, { t: 'w', v: ' ' }, { t: 'v', v: ' dev' }, { t: 'w', v: ' = {' }] },
+  { indent: 0, content: [{ t: 'kw', v: 'const' }, { t: 'w', v: ' ' }, { t: 'v', v: 'dev' }, { t: 'w', v: ' = {' }] },
   { indent: 1, content: [{ t: 'k', v: 'name' }, { t: 'w', v: ': ' }, { t: 's', v: "'Andrii Kovalskyi'" }, { t: 'w', v: ',' }] },
   { indent: 1, content: [{ t: 'k', v: 'role' }, { t: 'w', v: ': ' }, { t: 's', v: "'Software Engineer'" }, { t: 'w', v: ',' }] },
   { indent: 1, content: [{ t: 'k', v: 'location' }, { t: 'w', v: ': ' }, { t: 's', v: "'The Hague, NL 🇳🇱'" }, { t: 'w', v: ',' }] },
@@ -27,13 +27,15 @@ const colorMap: Record<string, string> = {
   w: '#e2e8f0', // white - punctuation
 }
 
+const ease = [0.22, 1, 0.36, 1] as [number, number, number, number]
+
 export default function About() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.15 })
 
   const fadeUp = (delay = 0) => ({
     hidden: { opacity: 0, y: 48 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.85, delay, ease: [0.22, 1, 0.36, 1] } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.85, delay, ease } },
   })
 
   return (
@@ -120,7 +122,6 @@ export default function About() {
                   initial={{ opacity: 0, x: -10 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: 0.3 + lineIndex * 0.04, duration: 0.4 }}
-                  className="flex"
                   style={{ paddingLeft: `${line.indent * 16}px` }}
                 >
                   {line.content.map((token, ti) => (

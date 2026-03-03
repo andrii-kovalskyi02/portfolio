@@ -21,27 +21,19 @@ export const stats = [
 export const skillGroups = [
   {
     category: 'Frontend',
-    items: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Vue', 'Nuxt', 'Redux', 'Tailwind CSS', 'Material UI', 'SCSS', 'HTML5'],
+    items: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Vue', 'Nuxt', 'Vite', 'Redux', 'Tailwind CSS', 'Material UI', 'Framer Motion', 'SCSS', 'HTML5', 'Figma'],
   },
   {
-    category: 'Backend & APIs',
+    category: 'Backend',
     items: ['PHP', 'Node.js', 'NestJS', 'Python', 'REST APIs', 'GraphQL'],
   },
   {
-    category: 'Cloud & DevOps',
-    items: ['Amazon Web Services', 'Cloudflare', 'Render', 'Vercel', 'Docker', 'CI/CD', 'Linux'],
+    category: 'Infrastructure',
+    items: ['AWS', 'Cloudflare', 'Vercel', 'Docker', 'CI/CD', 'Linux', 'Git / GitHub'],
   },
   {
-    category: 'Architecture',
-    items: ['SDLC', 'Agile / Scrum', 'Kanban', 'Atomic Design', 'BEM'],
-  },
-  {
-    category: 'Tooling',
-    items: ['Git / GitHub', 'Vite', 'Figma', 'VS Code', 'IntelliJ IDEA', 'Photoshop'],
-  },
-  {
-    category: 'AI & Productivity',
-    items: ['Claude', 'OpenAI', 'Cursor', 'OpenRouter'],
+    category: 'AI',
+    items: ['OpenAI', 'Claude', 'OpenRouter'],
   },
 ]
 
@@ -152,7 +144,7 @@ export const projects = [
 ]
 
 export const education = {
-  degree: 'IT Technician',
+  degree: 'IT Technician • Vocational School',
   school: 'Kazimierz Gzowski Complex of Technical & General Education Schools',
   location: 'Opole, Poland',
   period: '2018 — 2022',
@@ -170,7 +162,7 @@ export const certifications = [
 
 export const achievements = [
   'Passed Polish state-level professional IT certification exams (EE.08 & EE.09)',
-  'Selected for an internship in Italy under the prestigious Erasmus+ program',
+  'Selected for an internship in Italy under the Erasmus+ program',
   'Led a virtual IT equipment sales company during COVID-19, achieving 1st place in a business competition',
-  'Types at 60+ words per minute',
+  'Type at 60+ words per minute',
 ]

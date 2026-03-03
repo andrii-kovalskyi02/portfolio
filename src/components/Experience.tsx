@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { experience } from '../data/resume'
+import { experience, education } from '../data/resume'
 
 export default function Experience() {
   const ref = useRef(null)
@@ -126,6 +126,49 @@ export default function Experience() {
                 </div>
               </motion.div>
             ))}
+
+            {/* Education entry */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.7, delay: experience.length * 0.15 + 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="pl-12 md:pl-16 relative"
+            >
+              {/* Timeline dot — hollow ring style to distinguish from work */}
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={isInView ? { scale: 1 } : {}}
+                transition={{ delay: experience.length * 0.15 + 0.4, type: 'spring', stiffness: 400 }}
+                className="absolute left-1.5 md:left-3.5 top-5 w-3 h-3 rounded-full border-2 border-accent bg-c-bg -translate-x-1/2 ring-4 ring-c-bg"
+              />
+
+              <div className="border border-dashed border-c-border bg-c-surface/30 rounded-xl p-6 md:p-8">
+                <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
+                  <div>
+                    <h3 className="font-display font-semibold text-xl md:text-2xl text-white mb-1">
+                      {education.degree}
+                    </h3>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-accent font-code text-sm">{education.school}</span>
+                      <span className="text-c-border">·</span>
+                      <span className="font-code text-xs text-c-muted">{education.location}</span>
+                    </div>
+                  </div>
+                  <div className="text-right shrink-0">
+                    <div className="font-code text-xs text-white/70">{education.period}</div>
+                  </div>
+                </div>
+
+                <ul className="space-y-2">
+                  {education.highlights.map((h, i) => (
+                    <li key={i} className="flex gap-3 text-c-secondary text-sm leading-relaxed">
+                      <span className="text-accent mt-[3px] shrink-0 text-xs">▸</span>
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>

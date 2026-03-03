@@ -68,7 +68,7 @@ export default function Contact() {
               transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
               className="text-c-secondary text-base md:text-lg leading-relaxed mb-10 max-w-md"
             >
-              I'm open to full-time roles, freelance projects, and exciting collaborations.
+              I’m open to full-time and part-time opportunities, as well as exciting collaboration projects.
               Feel free to reach out — I typically respond within 24 hours.
             </motion.p>
 
@@ -122,9 +122,9 @@ export default function Contact() {
               className="pt-8 border-t border-c-border flex flex-col gap-3"
             >
               {[
-                { label: 'Email', value: personalInfo.email, href: `mailto:${personalInfo.email}` },
-                { label: 'Phone', value: personalInfo.phone, href: `tel:${personalInfo.phone}` },
-                { label: 'Location', value: personalInfo.location, href: '#' },
+                { label: 'Email', value: personalInfo.email, href: `mailto:${personalInfo.email}`, external: false },
+                { label: 'Phone', value: personalInfo.phone, href: personalInfo.whatsapp, external: true },
+                { label: 'Location', value: personalInfo.location, href: '#', external: false },
               ].map((c) => (
                 <div key={c.label} className="flex items-center gap-4">
                   <span className="font-code text-[10px] text-accent tracking-widest uppercase w-16 shrink-0">
@@ -132,6 +132,7 @@ export default function Contact() {
                   </span>
                   <a
                     href={c.href}
+                    {...(c.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                     className="font-code text-xs text-c-secondary hover:text-white transition-colors"
                   >
                     {c.value}
@@ -196,7 +197,7 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto mt-24 pt-8 border-t border-c-border">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <span className="font-code text-xs text-c-muted">
-            © 2026{' '}
+            © {new Date().getFullYear()}{' '}
             <span className="text-accent">Andrii Kovalskyi</span>. Built with React 19 + TypeScript +
             Framer Motion.
           </span>

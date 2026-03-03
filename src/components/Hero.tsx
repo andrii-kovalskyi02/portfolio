@@ -2,6 +2,8 @@ import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { stats } from '../data/resume'
 
+const ease = [0.22, 1, 0.36, 1] as [number, number, number, number]
+
 const container = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.12, delayChildren: 0.4 } },
@@ -9,7 +11,7 @@ const container = {
 
 const item = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease } },
 }
 
 export default function Hero() {
@@ -76,7 +78,7 @@ export default function Hero() {
       {/* Content */}
       <motion.div
         style={{ opacity: contentOpacity }}
-        className="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-24 w-full pt-28 pb-16"
+        className="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-24 w-full pt-28 pb-32"
       >
         <motion.div
           variants={container}
@@ -175,7 +177,7 @@ export default function Hero() {
                 <div className="font-display font-bold text-3xl md:text-4xl text-accent leading-none">
                   {s.value}
                 </div>
-                <div className="font-code text-xs text-c-muted mt-1.5 tracking-wide uppercase">
+                <div className="font-code text-xs text-c-secondary mt-1.5 tracking-wide uppercase">
                   {s.label}
                 </div>
               </div>

@@ -4,11 +4,9 @@ import { skillGroups } from '../data/resume'
 
 const categoryIcons: Record<string, string> = {
   Frontend: '⚡',
-  'Backend & APIs': '🔧',
-  'Cloud & DevOps': '☁️',
-  Architecture: '🏗️',
-  Tooling: '🛠️',
-  'AI & Productivity': '🤖',
+  Backend: '🔧',
+  Infrastructure: '☁️',
+  AI: '🤖',
 }
 
 export default function Skills() {
@@ -31,7 +29,7 @@ export default function Skills() {
         </motion.div>
 
         {/* Skill groups grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-2 gap-5">
           {skillGroups.map((group, gi) => (
             <motion.div
               key={group.category}
