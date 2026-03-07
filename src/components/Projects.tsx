@@ -24,8 +24,10 @@ const bgPatterns: Record<number, string> = {
   1: 'from-blue-900/20 to-purple-900/20',
   2: 'from-sky-900/20 to-cyan-900/20',
   3: 'from-emerald-900/20 to-teal-900/20',
-  4: 'from-orange-900/20 to-rose-900/20',
-  5: 'from-violet-900/20 to-fuchsia-900/20',
+  4: 'from-amber-900/20 to-yellow-900/20',
+  5: 'from-orange-900/20 to-rose-900/20',
+  6: 'from-indigo-900/20 to-blue-900/20',
+  7: 'from-violet-900/20 to-fuchsia-900/20',
 }
 
 export default function Projects() {
@@ -61,7 +63,8 @@ export default function Projects() {
               transition={{ duration: 0.75, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
               onMouseEnter={() => setHoveredId(p.id)}
               onMouseLeave={() => setHoveredId(null)}
-              className={`group relative grid md:grid-cols-[1fr_40%] gap-0 rounded-xl border overflow-hidden transition-all duration-400 ${
+              onClick={() => p.demo && window.open(p.demo, '_blank', 'noopener,noreferrer')}
+              className={`group relative grid md:grid-cols-[1fr_40%] gap-0 rounded-xl border overflow-hidden transition-all duration-400 cursor-pointer ${
                 hoveredId === p.id ? 'border-accent/40' : 'border-c-border'
               }`}
             >
@@ -84,20 +87,28 @@ export default function Projects() {
                   ))}
                 </div>
                 <div className="flex gap-5">
-                  <a
-                    href={p.code}
-                    className="flex items-center gap-2 font-code text-xs text-c-secondary hover:text-accent transition-colors"
-                  >
-                    <IconGithub />
-                    Source Code
-                  </a>
-                  <a
-                    href={p.demo}
-                    className="flex items-center gap-2 font-code text-xs text-c-secondary hover:text-accent transition-colors"
-                  >
-                    <IconExternal />
-                    Live Demo
-                  </a>
+                  {p.code && (
+                    <a
+                      href={p.code}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 font-code text-xs text-c-secondary hover:text-accent transition-colors"
+                    >
+                      <IconGithub />
+                      Source Code
+                    </a>
+                  )}
+                  {p.demo && (
+                    <a
+                      href={p.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 font-code text-xs text-c-secondary hover:text-accent transition-colors"
+                    >
+                      <IconExternal />
+                      Live Demo
+                    </a>
+                  )}
                 </div>
               </div>
 
@@ -147,17 +158,22 @@ export default function Projects() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.5 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="group rounded-xl border border-c-border bg-c-bg p-6 hover:border-accent/30 hover:bg-c-surface/80 transition-all duration-300"
+              onClick={() => p.demo && window.open(p.demo, '_blank', 'noopener,noreferrer')}
+              className="group rounded-xl border border-c-border bg-c-bg p-6 hover:border-accent/30 hover:bg-c-surface/80 transition-all duration-300 cursor-pointer"
             >
               <div className="flex items-start justify-between mb-5">
                 <span className="text-4xl">{p.emoji}</span>
                 <div className="flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                  <a href={p.code} className="text-c-muted hover:text-accent transition-colors">
-                    <IconGithub />
-                  </a>
-                  <a href={p.demo} className="text-c-muted hover:text-accent transition-colors">
-                    <IconExternal />
-                  </a>
+                  {p.code && (
+                    <a href={p.code} target="_blank" rel="noopener noreferrer" className="text-c-muted hover:text-accent transition-colors">
+                      <IconGithub />
+                    </a>
+                  )}
+                  {p.demo && (
+                    <a href={p.demo} target="_blank" rel="noopener noreferrer" className="text-c-muted hover:text-accent transition-colors">
+                      <IconExternal />
+                    </a>
+                  )}
                 </div>
               </div>
               <h3 className="font-display font-semibold text-lg text-white mb-2 group-hover:text-accent transition-colors duration-300">

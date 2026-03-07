@@ -155,19 +155,29 @@ export default function Contact() {
               </h4>
               <div className="space-y-3">
                 {certifications.map((cert, i) => (
-                  <motion.div
+                  <motion.a
                     key={i}
+                    href={cert.url || undefined}
+                    target={cert.url ? '_blank' : undefined}
+                    rel={cert.url ? 'noopener noreferrer' : undefined}
                     initial={{ opacity: 0, x: 20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ delay: 0.3 + i * 0.07, duration: 0.5 }}
-                    className="flex gap-3 items-start p-3 rounded-lg border border-c-border bg-c-surface/50 hover:border-accent/20 transition-colors"
+                    className={`flex gap-3 items-start p-3 rounded-lg border border-c-border bg-c-surface/50 transition-colors ${
+                      cert.url
+                        ? 'hover:border-accent/40 hover:bg-c-surface cursor-pointer'
+                        : 'hover:border-accent/20'
+                    }`}
                   >
                     <span className="text-accent text-xs mt-0.5 shrink-0">✦</span>
-                    <div>
+                    <div className="flex-1">
                       <div className="text-white text-sm font-medium">{cert.title}</div>
                       <div className="font-code text-xs text-c-muted mt-0.5">{cert.issuer}</div>
                     </div>
-                  </motion.div>
+                    {cert.url && (
+                      <span className="text-accent/40 text-xs mt-0.5 shrink-0 group-hover:text-accent transition-colors">↗</span>
+                    )}
+                  </motion.a>
                 ))}
               </div>
             </motion.div>
