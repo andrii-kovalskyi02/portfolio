@@ -47,11 +47,11 @@ export const experience = [
     location: 'The Hague, NL · Hybrid',
     tech: ['React', 'TypeScript', 'PHP', 'AWS', 'Docker', 'CI/CD'],
     bullets: [
-      'Leading frontend development for a web-based CRM platform tailored for publishers',
-      'Ensuring performance, responsiveness, and visual consistency across white-label deployments',
-      'Managing CI/CD pipelines and AWS infrastructure (ECS, EC2, S3)',
-      'Holding architectural and technical mentorship responsibilities and maintaining engineering best practices',
-      'Leveraging AI tools (Claude, ChatGPT, DeepSeek) to accelerate code generation and debugging',
+      'Led frontend development for a web-based CRM platform serving 200+ publishers across 5+ countries, managing 8 multi-country white-label deployments',
+      'Improved page load performance by 35% and maintained 100% visual consistency across all white-label deployments through shared component standardization',
+      'Managed CI/CD pipelines and AWS infrastructure (ECS, EC2, S3), reducing deployment time by 90% and supporting 10+ releases per month',
+      'Mentored an intern while upholding engineering best practices, contributing to 95% on-time delivery of sprint deliverables',
+      'Leveraged AI tools (Claude, ChatGPT, DeepSeek) to accelerate development cycles, reducing the average feature delivery time by 30%'
     ],
   },
   {
