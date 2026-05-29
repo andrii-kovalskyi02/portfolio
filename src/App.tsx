@@ -7,6 +7,7 @@ import Experience from './components/Experience'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
 import ScrollToTop from './components/ScrollToTop'
+import AskMyCV from './components/AskMyCV'
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
         <Projects />
         <Contact />
       </main>
+      <AskMyCV />
     </>
   )
 }
