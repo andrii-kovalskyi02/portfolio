@@ -92,6 +92,7 @@ export default function Projects() {
                       href={p.code}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
                       className="flex items-center gap-2 font-code text-xs text-c-secondary hover:text-accent transition-colors"
                     >
                       <IconGithub />
@@ -103,6 +104,7 @@ export default function Projects() {
                       href={p.demo}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
                       className="flex items-center gap-2 font-code text-xs text-c-secondary hover:text-accent transition-colors"
                     >
                       <IconExternal />
@@ -165,12 +167,12 @@ export default function Projects() {
                 <span className="text-4xl">{p.emoji}</span>
                 <div className="flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                   {p.code && (
-                    <a href={p.code} target="_blank" rel="noopener noreferrer" className="text-c-muted hover:text-accent transition-colors">
+                    <a href={p.code} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="text-c-muted hover:text-accent transition-colors">
                       <IconGithub />
                     </a>
                   )}
                   {p.demo && (
-                    <a href={p.demo} target="_blank" rel="noopener noreferrer" className="text-c-muted hover:text-accent transition-colors">
+                    <a href={p.demo} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="text-c-muted hover:text-accent transition-colors">
                       <IconExternal />
                     </a>
                   )}
