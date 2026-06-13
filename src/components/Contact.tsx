@@ -33,7 +33,6 @@ export default function Contact() {
   return (
     <section id="contact" className="section-pad bg-c-bg overflow-hidden">
       <div ref={ref} className="max-w-7xl mx-auto">
-        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -46,7 +45,6 @@ export default function Contact() {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
-          {/* Left — CTA */}
           <div>
             <motion.h3
               initial={{ opacity: 0, y: 40 }}
@@ -114,7 +112,6 @@ export default function Contact() {
               </a>
             </motion.div>
 
-            {/* Contact details */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
@@ -142,7 +139,6 @@ export default function Contact() {
             </motion.div>
           </div>
 
-          {/* Right — Certifications & Achievements */}
           <div>
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -203,7 +199,6 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* Footer */}
       <div className="max-w-7xl mx-auto mt-24 pt-8 border-t border-c-border">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <span className="font-code text-xs text-c-muted">

@@ -31,14 +31,12 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 flex items-center justify-between">
-        {/* Logo */}
         <a href="#" className="font-display font-bold text-2xl tracking-tight group">
           <span className="text-accent">A</span>
           <span className="text-white">K</span>
           <span className="text-accent/50 group-hover:text-accent transition-colors duration-300">/</span>
         </a>
 
-        {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link, i) => (
             <motion.a
@@ -66,7 +64,6 @@ export default function Navbar() {
           </motion.a>
         </div>
 
-        {/* Mobile hamburger */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="md:hidden p-2 flex flex-col gap-1.5 justify-center"
@@ -90,7 +87,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div

@@ -1,6 +1,8 @@
-import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import { stats } from '../data/resume'
+
+const HeroCanvas = lazy(() => import('./hero/HeroCanvas'))
 
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number]
 
@@ -16,8 +18,19 @@ const item = {
 
 export default function Hero() {
   const ref = useRef(null)
+  const reduce = useReducedMotion()
+  const [show3D, setShow3D] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia(
+      '(min-width: 768px) and (pointer: fine) and (prefers-reduced-motion: no-preference)',
+    )
+    setShow3D(mq.matches)
+    const onChange = () => setShow3D(mq.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '25%'])
+  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '25%'])
   const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0])
 
   return (
@@ -25,7 +38,6 @@ export default function Hero() {
       ref={ref}
       className="relative min-h-screen flex items-center overflow-hidden bg-c-bg"
     >
-      {/* Dot grid background */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.04]"
         style={{
@@ -34,11 +46,15 @@ export default function Hero() {
         }}
       />
 
-      {/* Accent glows */}
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] rounded-full bg-accent/[0.04] blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-accent/[0.06] blur-[100px] pointer-events-none" />
 
-      {/* Large background wordmark */}
+      {show3D && (
+        <Suspense fallback={null}>
+          <HeroCanvas />
+        </Suspense>
+      )}
+
       <motion.div
         style={{ y: bgY }}
         className="absolute inset-0 flex items-center pointer-events-none overflow-hidden select-none"
@@ -52,33 +68,9 @@ export default function Hero() {
         </span>
       </motion.div>
 
-      {/* Orbiting rings (decorative) */}
-      <div className="absolute right-8 md:right-24 top-1/2 -translate-y-1/2 pointer-events-none hidden lg:block">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
-          className="w-72 h-72 rounded-full border border-c-border absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-        />
-        <motion.div
-          animate={{ rotate: -360 }}
-          transition={{ duration: 16, repeat: Infinity, ease: 'linear' }}
-          className="w-48 h-48 rounded-full border border-accent/20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-        />
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
-          className="w-24 h-24 rounded-full border border-accent/40 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-        >
-          <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-accent" />
-        </motion.div>
-        {/* Center dot */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-accent" />
-      </div>
-
-      {/* Content */}
       <motion.div
         style={{ opacity: contentOpacity }}
-        className="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-24 w-full pt-28 pb-32"
+        className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-24 w-full pt-28 pb-32"
       >
         <motion.div
           variants={container}
@@ -86,7 +78,6 @@ export default function Hero() {
           animate="visible"
           className="max-w-3xl"
         >
-          {/* Status badge */}
           <motion.div variants={item} className="flex items-center gap-3 mb-8">
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-60" />
@@ -97,7 +88,6 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          {/* Name */}
           <motion.div variants={item}>
             <h1 className="font-display font-bold leading-[0.92] tracking-tight">
               <span
@@ -110,13 +100,11 @@ export default function Hero() {
                 className="block text-white"
                 style={{ fontSize: 'clamp(52px, 10vw, 128px)' }}
               >
-                Koval
-                <span className="text-gradient">skyi</span>
+                Kovalskyi
               </span>
             </h1>
           </motion.div>
 
-          {/* Role line */}
           <motion.div variants={item} className="flex items-center gap-4 mt-5 mb-7">
             <div className="h-px w-10 bg-accent" />
             <span className="font-code text-accent text-base md:text-lg tracking-widest uppercase">
@@ -124,7 +112,6 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          {/* Description */}
           <motion.p
             variants={item}
             className="text-c-secondary text-base md:text-lg leading-relaxed max-w-xl mb-10"
@@ -136,7 +123,6 @@ export default function Hero() {
             <span className="text-white">The Hague, Netherlands 🇳🇱</span>.
           </motion.p>
 
-          {/* CTAs */}
           <motion.div variants={item} className="flex flex-wrap gap-4 mb-16">
             <a
               href="#projects"
@@ -184,7 +170,6 @@ export default function Hero() {
             </a>
           </motion.div>
 
-          {/* Stats */}
           <motion.div
             variants={item}
             className="flex flex-wrap gap-8 pt-8 border-t border-c-border"
@@ -203,7 +188,6 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

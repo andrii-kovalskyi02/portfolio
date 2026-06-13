@@ -41,7 +41,6 @@ export default function Projects() {
   return (
     <section id="projects" className="section-pad bg-c-surface">
       <div ref={ref} className="max-w-7xl mx-auto">
-        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -53,7 +52,6 @@ export default function Projects() {
           <div className="flex-1 h-px bg-c-border max-w-sm" />
         </motion.div>
 
-        {/* Featured projects */}
         <div className="space-y-6 mb-14">
           {featured.map((p, i) => (
             <motion.div
@@ -68,7 +66,6 @@ export default function Projects() {
                 hoveredId === p.id ? 'border-accent/40' : 'border-c-border'
               }`}
             >
-              {/* Info side */}
               <div className="p-7 md:p-10 bg-c-bg flex flex-col justify-center">
                 <div className="font-code text-xs text-accent/50 mb-3 tracking-widest">
                   0{i + 1} — Featured Project
@@ -114,36 +111,37 @@ export default function Projects() {
                 </div>
               </div>
 
-              {/* Visual side */}
               <div
-                className={`relative hidden md:flex items-center justify-center bg-gradient-to-br ${bgPatterns[p.id] ?? 'from-gray-900/20 to-gray-800/20'} border-l border-c-border min-h-[200px]`}
+                className={`relative hidden md:block overflow-hidden bg-gradient-to-br ${bgPatterns[p.id] ?? 'from-gray-900/20 to-gray-800/20'} border-l border-c-border min-h-[240px]`}
               >
+                <motion.img
+                  src={p.image}
+                  alt={`${p.name} — live screenshot`}
+                  loading="lazy"
+                  width={1280}
+                  height={800}
+                  animate={{ scale: hoveredId === p.id ? 1.05 : 1 }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute inset-0 w-full h-full object-cover object-top"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-c-bg/50 via-transparent to-transparent pointer-events-none" />
                 <AnimatePresence>
                   {hoveredId === p.id && (
                     <motion.div
-                      initial={{ scale: 0.8, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0.8, opacity: 0 }}
-                      className="absolute inset-0 bg-accent/5"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="absolute inset-0 bg-accent/10 pointer-events-none"
                     />
                   )}
                 </AnimatePresence>
-                <motion.span
-                  animate={{ y: hoveredId === p.id ? -8 : 0 }}
-                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="text-7xl select-none"
-                >
-                  {p.emoji}
-                </motion.span>
-                {/* Corner bracket decoration */}
-                <div className="absolute top-4 left-4 w-6 h-6 border-t border-l border-accent/30" />
-                <div className="absolute bottom-4 right-4 w-6 h-6 border-b border-r border-accent/30" />
+                <div className="absolute top-4 left-4 w-6 h-6 border-t border-l border-accent/40 pointer-events-none" />
+                <div className="absolute bottom-4 right-4 w-6 h-6 border-b border-r border-accent/40 pointer-events-none" />
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Divider */}
         <div className="flex items-center gap-4 mb-10">
           <div className="flex-1 h-px bg-c-border" />
           <span className="font-code text-xs text-c-muted tracking-widest uppercase">
@@ -152,7 +150,6 @@ export default function Projects() {
           <div className="flex-1 h-px bg-c-border" />
         </div>
 
-        {/* Other projects */}
         <div className="grid md:grid-cols-2 gap-5">
           {others.map((p, i) => (
             <motion.div
@@ -163,24 +160,36 @@ export default function Projects() {
               onClick={() => p.demo && window.open(p.demo, '_blank', 'noopener,noreferrer')}
               className="group rounded-xl border border-c-border bg-c-bg p-6 hover:border-accent/30 hover:bg-c-surface/80 transition-all duration-300 cursor-pointer"
             >
-              <div className="flex items-start justify-between mb-5">
-                <span className="text-4xl">{p.emoji}</span>
-                <div className="flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+              <div className="relative mb-5 overflow-hidden rounded-lg border border-c-border aspect-video bg-gradient-to-br from-c-surface to-c-bg">
+                <img
+                  src={p.image}
+                  alt={`${p.name} — live screenshot`}
+                  loading="lazy"
+                  width={1280}
+                  height={800}
+                  className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                />
+                <span aria-hidden className="absolute top-2 left-2 text-lg drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">
+                  {p.emoji}
+                </span>
+              </div>
+              <div className="flex items-start justify-between gap-3 mb-2">
+                <h3 className="font-display font-semibold text-lg text-white group-hover:text-accent transition-colors duration-300">
+                  {p.name}
+                </h3>
+                <div className="flex gap-3 shrink-0 opacity-60 group-hover:opacity-100 transition-opacity duration-200">
                   {p.code && (
-                    <a href={p.code} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="text-c-muted hover:text-accent transition-colors">
+                    <a href={p.code} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label={`${p.name} source code`} className="text-c-muted hover:text-accent transition-colors">
                       <IconGithub />
                     </a>
                   )}
                   {p.demo && (
-                    <a href={p.demo} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="text-c-muted hover:text-accent transition-colors">
+                    <a href={p.demo} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} aria-label={`${p.name} live demo`} className="text-c-muted hover:text-accent transition-colors">
                       <IconExternal />
                     </a>
                   )}
                 </div>
               </div>
-              <h3 className="font-display font-semibold text-lg text-white mb-2 group-hover:text-accent transition-colors duration-300">
-                {p.name}
-              </h3>
               <p className="text-c-secondary text-sm leading-relaxed mb-4">{p.description}</p>
               <div className="flex flex-wrap gap-2">
                 {p.tech.map((t) => (

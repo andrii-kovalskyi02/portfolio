@@ -19,12 +19,12 @@ const codeLines = [
 ]
 
 const colorMap: Record<string, string> = {
-  kw: '#a78bfa', // purple - keyword
-  v: '#60a5fa', // blue - var name
-  k: '#86efac', // green - key
-  s: '#fdba74', // orange - string
-  n: '#fbbf24', // yellow - number
-  w: '#e2e8f0', // white - punctuation
+  kw: '#a78bfa',
+  v: '#60a5fa',
+  k: '#86efac',
+  s: '#fdba74',
+  n: '#fbbf24',
+  w: '#e2e8f0',
 }
 
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number]
@@ -41,7 +41,6 @@ export default function About() {
   return (
     <section id="about" className="section-pad bg-c-bg">
       <div ref={ref} className="max-w-7xl mx-auto">
-        {/* Section header */}
         <motion.div
           variants={fadeUp(0)}
           initial="hidden"
@@ -54,7 +53,6 @@ export default function About() {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-          {/* Left — bio */}
           <motion.div
             variants={fadeUp(0.1)}
             initial="hidden"
@@ -81,7 +79,6 @@ export default function About() {
               products and development efficiency.
             </p>
 
-            {/* Quick facts */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
                 { label: 'Location', value: 'The Hague, Netherlands' },
@@ -99,14 +96,12 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* Right — code block */}
           <motion.div
             variants={fadeUp(0.2)}
             initial="hidden"
             animate={isInView ? 'visible' : 'hidden'}
             className="rounded-xl border border-c-border bg-c-surface overflow-hidden"
           >
-            {/* Window chrome */}
             <div className="flex items-center gap-2 px-4 py-3 border-b border-c-border bg-black/30">
               <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
               <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
@@ -114,7 +109,6 @@ export default function About() {
               <span className="ml-2 font-code text-xs text-c-muted">about.ts</span>
             </div>
 
-            {/* Code */}
             <div className="p-5 font-code text-sm leading-7 overflow-x-auto">
               {codeLines.map((line, lineIndex) => (
                 <motion.div

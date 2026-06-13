@@ -90,6 +90,7 @@ export const projects = [
     id: 1,
     name: 'Gadget Galaxy',
     emoji: '📱',
+    image: '/projects/gadget-galaxy.webp',
     description:
       'A functional e-commerce platform for exploring phones and tablets with Redux-powered cart, REST API integration, and full product filtering.',
     tech: ['React', 'TypeScript', 'Redux', 'REST API', 'SCSS'],
@@ -98,20 +99,22 @@ export const projects = [
     featured: true,
   },
   {
-    id: 2,
-    name: 'WeatherWhisper',
-    emoji: '☁️',
+    id: 4,
+    name: 'Holld Yachts',
+    emoji: '⛵',
+    image: '/projects/holld-yachts.webp',
     description:
-      'A weather forecast application built on Next.js delivering accurate location-based predictions with an intuitive, responsive interface.',
-    tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'REST API'],
-    demo: 'https://next-weather-forecast.vercel.app',
-    code: 'https://github.com/andrii-kovalskyi02/next-weather-forecast',
+      'A luxury yacht manufacturer website showcasing carbon-built catamarans crafted with Dutch superyacht precision and high-performance engineering.',
+    tech: ['WordPress', 'PHP', 'JavaScript', 'CSS', 'UI/UX'],
+    demo: 'https://www.holld.com/',
+    code: '',
     featured: true,
   },
   {
     id: 3,
     name: 'Estate Hub',
     emoji: '🏡',
+    image: '/projects/estate-hub.webp',
     description:
       'A full-featured real estate listing platform built with Vue 3 and Pinia, enabling users to browse, create, edit, and favorite property listings with advanced search and sorting.',
     tech: ['Vue 3', 'TypeScript', 'Pinia', 'Vue Router', 'SCSS', 'Vite'],
@@ -120,20 +123,22 @@ export const projects = [
     featured: true,
   },
   {
-    id: 4,
-    name: 'Holld Yachts',
-    emoji: '⛵',
+    id: 2,
+    name: 'WeatherWhisper',
+    emoji: '☁️',
+    image: '/projects/weatherwhisper.webp',
     description:
-      'A luxury yacht manufacturer website showcasing carbon-built catamarans crafted with Dutch superyacht precision and high-performance engineering.',
-    tech: ['WordPress', 'PHP', 'JavaScript', 'CSS', 'UI/UX'],
-    demo: 'https://www.holld.com/',
-    code: '',
+      'A weather forecast application built on Next.js delivering accurate location-based predictions with an intuitive, responsive interface.',
+    tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'REST API'],
+    demo: 'https://next-weather-forecast.vercel.app',
+    code: 'https://github.com/andrii-kovalskyi02/next-weather-forecast',
     featured: false,
   },
   {
     id: 5,
     name: '2048 Puzzle',
     emoji: '🎮',
+    image: '/projects/2048-puzzle.webp',
     description:
       'Classic 2048 puzzle game implemented in vanilla JavaScript with smooth tile animations and keyboard/touch controls.',
     tech: ['HTML', 'CSS/SCSS', 'JavaScript', 'BEM'],
@@ -145,6 +150,7 @@ export const projects = [
     id: 6,
     name: 'Task Master',
     emoji: '📋',
+    image: '/projects/task-master.webp',
     description:
       'A powerful task management application with full CRUD operations, React state management, and seamless REST API integration.',
     tech: ['React', 'TypeScript', 'REST API', 'HTML'],
@@ -156,6 +162,7 @@ export const projects = [
     id: 7,
     name: 'Luna Sonic',
     emoji: '🔊',
+    image: '/projects/luna-sonic.webp',
     description:
       'Landing page for CrazyBaby Luna — a futuristic Kickstarter wireless speaker — with focus on animation and visual storytelling.',
     tech: ['HTML', 'CSS/SCSS', 'JavaScript', 'BEM'],

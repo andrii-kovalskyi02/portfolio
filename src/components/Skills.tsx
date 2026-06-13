@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { skillGroups } from '../data/resume'
 
 const categoryIcons: Record<string, string> = {
@@ -12,11 +12,11 @@ const categoryIcons: Record<string, string> = {
 export default function Skills() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.1 })
+  const reduce = useReducedMotion()
 
   return (
     <section id="skills" className="section-pad bg-c-surface">
       <div ref={ref} className="max-w-7xl mx-auto">
-        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -28,7 +28,6 @@ export default function Skills() {
           <div className="flex-1 h-px bg-c-border max-w-sm" />
         </motion.div>
 
-        {/* Skill groups grid */}
         <div className="grid md:grid-cols-2 gap-5">
           {skillGroups.map((group, gi) => (
             <motion.div
@@ -38,11 +37,10 @@ export default function Skills() {
               transition={{ duration: 0.7, delay: gi * 0.09, ease: [0.22, 1, 0.36, 1] }}
               className="group relative rounded-xl border border-c-border bg-c-bg p-6 hover:border-accent/30 transition-all duration-400 overflow-hidden"
             >
-              {/* Corner accent */}
               <div className="absolute top-0 right-0 w-12 h-12 bg-accent/5 rounded-bl-2xl group-hover:bg-accent/10 transition-colors duration-400" />
 
               <div className="flex items-center gap-2 mb-5">
-                <span className="text-lg">{categoryIcons[group.category] ?? '💡'}</span>
+                <span className="text-lg" aria-hidden>{categoryIcons[group.category] ?? '💡'}</span>
                 <h3 className="font-code text-xs text-accent tracking-widest uppercase">
                   {group.category}
                 </h3>
@@ -65,13 +63,12 @@ export default function Skills() {
           ))}
         </div>
 
-        {/* Marquee tech strip */}
-        <div className="mt-16 overflow-hidden relative">
+        <div className="mt-16 overflow-hidden relative" aria-hidden>
           <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-c-surface to-transparent z-10" />
           <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-c-surface to-transparent z-10" />
           <motion.div
-            animate={{ x: ['0%', '-50%'] }}
-            transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+            animate={reduce ? undefined : { x: ['0%', '-50%'] }}
+            transition={reduce ? undefined : { duration: 25, repeat: Infinity, ease: 'linear' }}
             className="flex gap-8 whitespace-nowrap"
           >
             {[

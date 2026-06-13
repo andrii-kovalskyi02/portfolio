@@ -42,7 +42,6 @@ export default function Cursor() {
 
   return (
     <>
-      {/* Dot — instant */}
       <motion.div
         className="fixed top-0 left-0 z-[9999] pointer-events-none"
         style={{ x: mouseX, y: mouseY, translateX: '-50%', translateY: '-50%' }}
@@ -59,7 +58,6 @@ export default function Cursor() {
         />
       </motion.div>
 
-      {/* Ring — spring lag */}
       <motion.div
         className="fixed top-0 left-0 z-[9998] pointer-events-none rounded-full"
         style={{
@@ -79,7 +77,6 @@ export default function Cursor() {
         transition={{ type: 'spring', stiffness: 220, damping: 22 }}
       />
 
-      {/* Trailing glow on hover */}
       {hovered && (
         <motion.div
           className="fixed top-0 left-0 z-[9997] pointer-events-none rounded-full"
